@@ -114,7 +114,7 @@ formBank.addEventListener('submit', function(e) {
         <div class='res_item'>Номер карты<br>${newNum}</div>
         <div class='res_item'>Дата окончания действия<br>${this.month.value}/${this.year.value}</div>
         <div class='res_item'>CVV код<br>${this.cvv.value}</div>
-        <div class='res_item'>Имя владельца<br>${this.name.value}</div>
+        <div class='res_item'>Имя владельца<br>${this.name.value.toUpperCase()}</div>
     </div>
     `
     this.reset()
