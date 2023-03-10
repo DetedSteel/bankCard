@@ -65,10 +65,9 @@ selectSystem.addEventListener('change', () => {
 })
 
 numberInput.addEventListener('input', function() {
-    let num = this.value
     let newNum = ''
-    num = this.value.slice(0,16)
-    this.value = num
+    let num = this.value.slice(0,16)
+    this.value = this.value.slice(0,16)
     for (let i = 0; i < num.length; i++){
         newNum += num[i]
         if (i == 3 || i == 7 || i == 11){
@@ -100,12 +99,19 @@ code.addEventListener('input', function() {
 let num = 1
 formBank.addEventListener('submit', function(e) {
     e.preventDefault()
+    let newNum = ''
+    for (let i = 0; i < this.number.value.length; i++){
+        newNum += this.number.value[i]
+        if (i == 3 || i == 7 || i == 11){
+            newNum += ' '
+        }
+    }
     resultsContainer.innerHTML += `
     <div class='flex_res'>
         <div class='res_item'>${num++}</div>
         <div class='res_item'><img src='${swithBank()}' alt='bank' class='res_img'></div>
         <div class='res_item'><img src='${switchSystem()}' alt='bank' class='res_img'></div>
-        <div class='res_item'>Номер карты<br>${this.number.value}</div>
+        <div class='res_item'>Номер карты<br>${newNum}</div>
         <div class='res_item'>Дата окончания действия<br>${this.month.value}/${this.year.value}</div>
         <div class='res_item'>CVV код<br>${this.cvv.value}</div>
         <div class='res_item'>Имя владельца<br>${this.name.value}</div>
