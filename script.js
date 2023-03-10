@@ -67,9 +67,8 @@ selectSystem.addEventListener('change', () => {
 numberInput.addEventListener('input', function() {
     let num = this.value
     let newNum = ''
-    if (this.value.length > 16){
-        num = this.value.slice(0,16)
-    }
+    num = this.value.slice(0,16)
+    this.value = num
     for (let i = 0; i < num.length; i++){
         newNum += num[i]
         if (i == 3 || i == 7 || i == 11){
