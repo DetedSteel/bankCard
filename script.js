@@ -106,17 +106,21 @@ formBank.addEventListener('submit', function(e) {
             newNum += ' '
         }
     }
-    resultsContainer.innerHTML += `
-    <div class='flex_res'>
-        <div class='res_item'>${num++}</div>
-        <div class='res_item'><img src='${swithBank()}' alt='bank' class='res_img'></div>
-        <div class='res_item'><img src='${switchSystem()}' alt='bank' class='res_img'></div>
-        <div class='res_item'>Номер карты<br>${newNum}</div>
-        <div class='res_item'>Дата окончания действия<br>${this.month.value}/${this.year.value}</div>
-        <div class='res_item'>CVV код<br>${this.cvv.value}</div>
-        <div class='res_item'>Имя владельца<br>${this.name.value.toUpperCase()}</div>
-    </div>
-    `
+    if (this.number.value.length == 16 && this.cvv.value.length == 3 && parseInt(this.month.value) <= 12 && this.year.value.length == 2){
+        resultsContainer.innerHTML += `
+        <div class='flex_res'>
+            <div class='res_item'>${num++}</div>
+            <div class='res_item'><img src='${swithBank()}' alt='bank' class='res_img'></div>
+            <div class='res_item'><img src='${switchSystem()}' alt='bank' class='res_img'></div>
+            <div class='res_item'>Номер карты<br>${newNum}</div>
+            <div class='res_item'>Дата окончания действия<br>${this.month.value}/${this.year.value}</div>
+            <div class='res_item'>CVV код<br>${this.cvv.value}</div>
+            <div class='res_item'>Имя владельца<br>${this.name.value.toUpperCase()}</div>
+        </div>
+        `
+    } else {
+        alert('Ошибка')
+    }
     this.reset()
     swithBank()
     switchSystem()
