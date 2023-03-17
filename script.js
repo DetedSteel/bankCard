@@ -54,6 +54,20 @@ function switchSystem(){
     }
 }
 
+function checkNum(str){
+    if (str.length > 0){
+        let a = str.slice(str.length - 1, str.length)
+        if (isNaN(parseInt(a))){
+            alert('вы ввесли букву вместо цифры')
+            return str.slice(0, str.length - 1)
+        } else {
+            return str
+        }
+    } else {
+        return str
+    }
+}
+
 swithBank()
 switchSystem()
 selectBank.addEventListener('change', () => {
@@ -68,23 +82,29 @@ numberInput.addEventListener('input', function() {
     let newNum = ''
     let num = this.value.slice(0,16)
     this.value = this.value.slice(0,16)
-    for (let i = 0; i < num.length; i++){
-        newNum += num[i]
+    let res = checkNum(num)
+    for (let i = 0; i < res.length; i++){
+        newNum += res[i]
         if (i == 3 || i == 7 || i == 11){
             newNum += ' '
         }
     }
     number.innerText = newNum
+    this.value = res
 })
 
 month.addEventListener('input', function() {
-    monthRes.innerText = this.value.slice(0, 2)
-    this.value = this.value.slice(0, 2)
+    let num = this.value.slice(0, 2)
+    let newNum = checkNum(num)
+    monthRes.innerText = newNum
+    this.value = newNum
 })
 
 year.addEventListener('input', function() {
-    yearRes.innerText = this.value.slice(0, 2)
-    this.value = this.value.slice(0, 2)
+    let num = this.value.slice(0, 2)
+    let newNum = checkNum(num)
+    yearRes.innerText = newNum
+    this.value = newNum
 })
 
 name1.addEventListener('input', function() {
@@ -92,8 +112,10 @@ name1.addEventListener('input', function() {
 })
 
 code.addEventListener('input', function() {
-    codeRes.innerText = this.value.slice(0, 3)
-    this.value = this.value.slice(0,3)
+    let num = this.value.slice(0, 3)
+    let newNum = checkNum(num)
+    codeRes.innerText = newNum
+    this.value = newNum
 })
 
 let num = 1
@@ -124,4 +146,9 @@ formBank.addEventListener('submit', function(e) {
     this.reset()
     swithBank()
     switchSystem()
+    number.innerText = '0000 0000 0000 0000'
+    monthRes.innerText = '00'
+    yearRes.innerText = '00'
+    nameRes.innerText = 'NAME SURNAME'
+    codeRes.innerText = '000'
 })
